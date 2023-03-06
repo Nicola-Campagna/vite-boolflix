@@ -1,4 +1,10 @@
 <script>
+// import MyComponent
+
+// HEADER
+import AppHeader from "./components/AppHeader.vue"
+
+
 
 export default {
   data() {
@@ -7,10 +13,18 @@ export default {
   },
 
   components: {
+    AppHeader,
+
+
   },
 };
 </script>
 
-<template></template>
+<template>
+  <!-- HEADER -->
+  <AppHeader />
+
+  <!-- MAIN -->
+</template>
 
 <style lang="scss"></style>
