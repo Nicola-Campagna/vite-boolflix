@@ -32,10 +32,15 @@ export default {
   },
 
   methods: {
-    fetchMovies(query) {
-      // console.log(query);
-      axios
+    fetchResults(term) {
+      this.fetchFilm(term);
+      this.fetchTvSerie(term);
 
+    },
+
+    fetchFilm(query) {
+      // chiamata axios per film
+      axios
         .get(`${this.baseUri}/search/movie`, {
 
           params: {
@@ -44,19 +49,34 @@ export default {
         })
 
         .then((response) => {
-          console.log(response.data.results);
+          // console.log(response.data.results);
           store.filmList = response.data.results
         })
-
     },
-  }
 
+    fetchTvSerie(query) {
+      // chiamata axios per serie tv
+      axios.get(`${this.baseUri}/search/tv`, {
 
-};
+        params: {
+          api_key: this.apiKey, query
+        }
+      })
+
+        .then((response) => {
+          // console.log(response.data.results);
+          store.tvSerieList = response.data.results
+        })
+    }
+
+  },
+
+}
+
 </script>
 
 <template>
-  <SearchBar :title="appname" @search="fetchMovies" />
+  <SearchBar :title="appname" @search="fetchResults" />
   <AppMain />
 </template>
 
