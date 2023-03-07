@@ -7,6 +7,12 @@ export default {
 
             store,
         }
+    },
+    methods: {
+        getFlag(country) {
+            country = country.toUpperCase();
+            return "https://flagsapi.com/" + country + "/flat/64.png"
+        }
     }
 
 };
@@ -16,10 +22,13 @@ export default {
     <div v-if="store.filmList.length">
         <h2>FILM:</h2>
         <ul v-for="film in store.filmList">
-            <li>{{ film.original_title }}</li>
-            <li>{{ film.title }}</li>
-            <li>{{ film.vote_average }}</li>
-            <li>{{ film.original_language }}</li>
+            <li>
+                <img :src="getFlag(film.original_language)" alt="">
+                <!-- {{ film.original_language }} -->
+            </li>
+            <li>TITOLO ORIGINALE: {{ film.original_title }}</li>
+            <li>TITOLO: {{ film.title }}</li>
+            <li>VOTO. {{ film.vote_average }}</li>
         </ul>
     </div>
     <div v-else="">INIZIA LA RICERCA</div>
